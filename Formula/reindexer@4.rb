@@ -1,4 +1,4 @@
-class Reindexer < Formula
+class ReindexerAT4 < Formula
   env :std
   desc "is a fast document-oriented in-memory database."
   homepage "https://github.com/restream/reindexer"
