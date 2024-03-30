@@ -40,6 +40,7 @@ class ReindexerAT4 < Formula
 
   service do
     run [opt_bin/"reindexer_server", "--config", etc/"reindexer@4.conf"]
+    log_path var/"log/reindexer@4/reindexer.log"
     error_log_path var/"log/reindexer@4/reindexer.log"
   end
 end
