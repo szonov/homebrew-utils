@@ -1,4 +1,4 @@
-class Reindexer < Formula
+class ReindexerAT4 < Formula
   env :std
   desc "is a fast document-oriented in-memory database."
   homepage "https://github.com/restream/reindexer"
@@ -23,17 +23,17 @@ class Reindexer < Formula
       system "make", "-j8", "reindexer_server", "reindexer_tool", "install"
     end
 
-    mkdir "#{var}/reindexer"
-    mkdir "#{var}/log/reindexer"
+    mkdir "#{var}/reindexer@4"
+    mkdir "#{var}/log/reindexer@4"
 
     inreplace "#{buildpath}/build/cpp_src/cmd/reindexer_server/contrib/config.yml" do |s|
-      s.gsub! "/var/lib/reindexer", "#{var}/reindexer"
-      s.gsub! "/var/log/reindexer", "#{var}/log/reindexer"
+      s.gsub! "/var/lib/reindexer", "#{var}/reindexer@4"
+      s.gsub! "/var/log/reindexer", "#{var}/log/reindexer@4"
       s.gsub! "user:", "# user:"
     end
 
     # Copy configuration files
-    etc.install "#{buildpath}/build/cpp_src/cmd/reindexer_server/contrib/config.yml" => "reindexer.conf"
+    etc.install "#{buildpath}/build/cpp_src/cmd/reindexer_server/contrib/config.yml" => "reindexer@4.conf"
   end
 
   def plist; <<-EOS
@@ -51,14 +51,14 @@ class Reindexer < Formula
         <array>
             <string>#{opt_bin}/reindexer_server</string>
             <string>--config</string>
-            <string>#{etc}/reindexer.conf</string>
+            <string>#{etc}/reindexer@4.conf</string>
         </array>
         <key>WorkingDirectory</key>
         <string>#{HOMEBREW_PREFIX}</string>
         <key>StandardErrorPath</key>
-        <string>#{var}/log/reindexer/reindexer.log</string>
+        <string>#{var}/log/reindexer@4/reindexer.log</string>
         <key>StandardOutPath</key>
-        <string>#{var}/log/reindexer/reindexer.log</string>
+        <string>#{var}/log/reindexer@4/reindexer.log</string>
         </dict>
     </plist>
     EOS
@@ -66,9 +66,9 @@ class Reindexer < Formula
 
   def caveats; <<-EOS
     The configuration file is available at:
-      #{etc}/reindexer.conf
+      #{etc}/reindexer@4.conf
     The database itself will store data at:
-      #{var}/reindexer/
+      #{var}/reindexer@4/
   EOS
   end
 end

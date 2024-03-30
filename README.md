@@ -14,7 +14,7 @@ You can then install any formula.
 
 ## Formula listing
 
-- Reindexer v4 `brew install reindexer`
+- Reindexer v4 `brew install reindexer@4`
 
 ## License
 
