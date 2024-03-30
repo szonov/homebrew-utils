@@ -10,10 +10,6 @@ class ReindexerAT4 < Formula
   depends_on "cmake" => :build
   depends_on "leveldb"
 
-  # service do
-  #   name macos: "#{plist_name}"
-  # end
-
   def install
     mkdir "build"
     cd "build" do
@@ -30,37 +26,8 @@ class ReindexerAT4 < Formula
       s.gsub! "user:", "# user:"
     end
 
-    # Copy configuration files
     etc.install "#{buildpath}/build/cpp_src/cmd/reindexer_server/contrib/config.yml" => "reindexer@4.conf"
   end
-
-  # def plist; <<-EOS
-  #   <?xml version="1.0" encoding="UTF-8"?>
-  #   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-  #   <plist version="1.0">
-  #     <dict>
-  #       <key>Label</key>
-  #       <string>#{plist_name}</string>
-  #       <key>RunAtLoad</key>
-  #       <true/>
-  #       <key>KeepAlive</key>
-  #       <false/>
-  #       <key>ProgramArguments</key>
-  #       <array>
-  #           <string>#{opt_bin}/reindexer_server</string>
-  #           <string>--config</string>
-  #           <string>#{etc}/reindexer@4.conf</string>
-  #       </array>
-  #       <key>WorkingDirectory</key>
-  #       <string>#{HOMEBREW_PREFIX}</string>
-  #       <key>StandardErrorPath</key>
-  #       <string>#{var}/log/reindexer@4/reindexer.log</string>
-  #       <key>StandardOutPath</key>
-  #       <string>#{var}/log/reindexer@4/reindexer.log</string>
-  #       </dict>
-  #   </plist>
-  #   EOS
-  # end
 
   def caveats
     <<-EOS
@@ -73,10 +40,6 @@ class ReindexerAT4 < Formula
 
   service do
     run [opt_bin/"reindexer_server", "--config", etc/"reindexer@4.conf"]
-    keep_alive false
-    run_type :immediate
     error_log_path var/"log/reindexer@4/reindexer.log"
-    log_path var/"log/reindexer@4/reindexer.log"
-    working_dir var
   end
 end
