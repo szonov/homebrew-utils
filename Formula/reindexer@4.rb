@@ -62,11 +62,13 @@ class ReindexerAT4 < Formula
   #   EOS
   # end
 
-  def caveats; <<-EOS The configuration file is available at:
-      #{etc}/reindexer@4.conf
-    The database itself will store data at:
-      #{var}/reindexer@4/
-  EOS
+  def caveats
+    <<-EOS
+      The configuration file is available at:
+        #{etc}/reindexer@4.conf
+      The database itself will store data at:
+        #{var}/reindexer@4/
+    EOS
   end
 
   service do
