@@ -11,6 +11,10 @@ class ReindexerAT4 < Formula
   depends_on "cmake" => :build
   depends_on "leveldb"
 
+  service do
+    name macos: "#{plist_name}"
+  end
+
   def install
 
     mkdir "build"
